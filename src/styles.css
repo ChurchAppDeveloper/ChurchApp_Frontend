@@ -1,0 +1,120 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+.custom-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.row-null {
+  padding: 0px;
+  margin: 0px;
+}
+
+.col-null {
+  padding: 0px;
+  margin: 0px;
+}
+
+.modal-content {
+  /* border-radius: 30px; */
+  border-radius: 10px;
+}
+
+.modal-header {
+  display: block !important;
+  border: none;
+  margin-bottom: 0px;
+  padding: 25px 0px 10px 0px;
+}
+
+.modal-header h5 {
+  color: #E84747;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.modal-header .btn-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  color: red;
+}
+
+.modal-footer {
+  border: none;
+}
+
+.modal-dialog {
+  max-width: 600px;
+}
+
+.masstiming .modal-dialog {
+  max-width: 600px;
+}
+
+.classifield .modal-dialog {
+  max-width: 460px;
+}
+
+.dropdown-menu ul {
+  overflow-x: auto !important;
+  height: 240px !important;
+}
+
+span.sr-only {
+  display: none;
+}
+
+button.btn.btn-link {
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.ngb-tp-input {
+  width: 45px;
+  height: 25px;
+  text-align: center;
+}
+
+fieldset {
+  width: 100px;
+  margin: auto;
+}
+
+span.chevron.ngb-tp-chevron {
+  color: #e84747;
+  font-size: 12px;
+}
+
+.mouse-pointer {
+  cursor: pointer;
+}
+
+input:disabled,
+textarea:disabled {
+  color: #525252 !important;
+  border-bottom: none !important;
+}
+
+
+/* sabari Css */
+.modal-header1 {
+  display: block !important;
+  border: none;
+  margin-bottom: 0px;
+  padding: 0px 0px 10px 0px;
+}
+
+.modal-content1{
+  width: 60vw;
+}

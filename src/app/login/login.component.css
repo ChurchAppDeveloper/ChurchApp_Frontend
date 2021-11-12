@@ -1,0 +1,113 @@
+.login-wrapper{
+    width: 100%;
+    height: 100%;
+    background-image: url(../../assets/images/loginbg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.center-align{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.login-card{
+    height: 330px;
+    width: 400px;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.logo-login{
+    background-image: url(../../assets/images/logoredV2.png);
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: 100% 60px;
+    width: 100%;
+    height: 90px;
+}
+
+.login-content{
+    width: 280px;
+    height: 220px;
+}
+
+.login-btn{
+    background-color: #E84747;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 20px;
+    height: 40px;
+    border: none;
+    flex-wrap: wrap;
+}
+
+.login-btn:focus{
+    box-shadow: 0 1px 16px rgba(232,71,71,.4), 0 1px 2px rgba(232,71,71,.5);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.input-login:focus{
+    box-shadow: 0 1px 16px rgba(232,71,71,.4), 0 1px 2px rgba(232,71,71,.5);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.btn-group1{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.input-login{
+    text-align: center;
+    border: 1px solid #e84747;
+    height: 40px;
+    width: 100%;
+    border-radius: 20px;
+    margin-top: 2px;
+}
+
+.row-null{
+    padding: 0px;
+    margin: 0px;
+}
+
+.resend-otp{
+    text-align: center;
+    font-size: 12px;
+    color: #818181;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+::-webkit-input-placeholder { /* Edge */
+    color: #ccc;
+    font-size: 14px;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #ccc;
+    font-size: 14px;
+  }
+  
+  ::placeholder {
+    color: #ccc;
+    font-size: 14px;
+  }
+
+  .field-icon {
+    float: right;
+    margin-left: -25px;
+    margin-top: -29px;
+    position: relative;
+    z-index: 2;
+    padding-right: 25px;
+    cursor: pointer;
+  }

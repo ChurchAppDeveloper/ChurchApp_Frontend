@@ -1,0 +1,399 @@
+<div class="massTime-wrapper custom-card">
+ <div class="row">
+   <div class="col-md-9">
+    <div class="row text-center mt-5">
+      <!-- <div class="col-md-4">
+        <div class="btn-group">
+          <div class="btn btn-danger" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()">
+            Previous
+          </div>
+          <div #fileInput class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+            Today
+          </div>
+          <div class="btn btn-danger" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()">
+            Next
+          </div>
+        </div>
+      </div> -->
+      <div class="col-md-4">
+        <h5> <i class="fa fa-caret-left text-danger" aria-hidden="true" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()"></i>&nbsp;&nbsp; {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }} &nbsp;&nbsp; <span>  <i class="fa fa-caret-right text-danger" aria-hidden="true"  mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()"></i></span></h5>
+      </div>
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div #fileInput class="btn btn-danger cal-view" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
+            Monthly
+          </div>
+          <div class="btn btn-danger cal-view" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
+            Weekly
+          </div>
+          <div class="btn btn-danger cal-view" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
+            Daily
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="btn btn-danger btn-sm addBtn" (click)="openModal()">+ New Schedule</div>
+      </div>
+    </div>
+  
+    <br />
+    <!-- <div class="row">
+      <div class="col-md-10">
+    
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary float-right" (click)="openModal()">
+          Add new
+        </button>
+        
+      </div>
+    
+    </div> -->
+    <!-- <div class="add-user custom-card" (click)="openModal()"></div> -->
+    <div class="row">
+       <div class="col-md-12">
+        <div [ngSwitch]="view">
+          <mwl-calendar-month-view   *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events"
+            [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+            (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)"  >
+          </mwl-calendar-month-view>
+          <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+            (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)"  >
+          </mwl-calendar-week-view>
+          <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+            (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)" >
+          </mwl-calendar-day-view>
+        </div>
+       </div>
+    </div>
+   </div>
+   <div class="col-md-3">
+    <div class="scheduleList">
+      <h5 style="visibility: hidden;"><b>Schedules</b> </h5>
+      <div class="p-3">
+            <h6><b>Schedules</b> </h6>
+            <P class="dateFomate">{{selectedDateDetail | date:'MMMM d, EEEE'}}</P>
+      </div>
+      <div *ngFor="let event of selectedEventsDisplay">
+        <div class="strike">
+          <span>{{event.start_time | date:'h:mm a'}} to {{event.end_time | date:'h:mm a'}}</span>
+        </div>
+        <div class="eventContainer">
+             <div [ngStyle]="{ backgroundColor: event.color.secondary,color:event.color.primary }"  class="eventStyle">
+               <div class="row">
+                 <div class="col-md-8">
+                  <p>{{event.title}}</p>
+                 </div>
+                 <div class="col-md-4">
+                  <button class="btn btn-light btn-sm" (click)="handleEvent('Edited', event)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                </div>
+
+               </div>
+                      <!-- <p>{{event.title}}<span><button class="btn btn-light">f</button></span></p> -->
+             </div>
+         
+        </div>
+      </div>
+    
+    </div>
+   </div>
+ </div> 
+  
+  
+
+</div>
+
+
+<!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+
+<br /><br /><br />
+
+
+
+<!-- <div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Primary color</th>
+        <th>Secondary color</th>
+        <th>Starts at</th>
+        <th>Ends at</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let event of events">
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()" />
+        </td>
+        <td>
+          <input type="color" [(ngModel)]="event.color.primary" (change)="refresh.next()" />
+        </td>
+        <td>
+          <input type="color" [(ngModel)]="event.color.secondary" (change)="refresh.next()" />
+        </td>
+        <td>
+          <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.datessss"
+            (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="false"
+            dateFormat="Y-m-d" altFormat="F j, Y" placeholder="Not set" />
+        </td>
+        <td>
+          <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start"
+            (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
+            dateFormat="H:i" altFormat="H:i" placeholder="Not set" [noCalendar]="true" />
+        </td>
+        <td>
+          <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end" (ngModelChange)="refresh.next()"
+            [altInput]="true" [convertModelValue]="true" [enableTime]="true" dateFormat="H:i" altFormat="H:i"
+            placeholder="Not set" [noCalendar]="true" />
+        </td>
+        <td>
+   
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+<ng-template #modalContent let-close="close" class="">
+  <div class="modal-header">
+    <p class="modal-title container"><b>Edit Event</b></p>
+    <span class="closeBtn" #close (click)="close()">x</span>
+    <!-- <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button> -->
+  </div>
+  <div class="modal-body">
+    <div>
+      <form #addForm="ngForm" (ngSubmit)="eventUpdate(addForm)" novalidate>
+
+        <div class="row">
+          <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+            <label>Start Date</label>
+             
+           <input class="form-control" name="startDate" type="date"  [(ngModel)]="startDate"  min={{today}} 
+           (ngModelChange)="refresh.next()"  placeholder="Start Date" />
+
+          </div>
+          <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+            <label>End Date</label>
+             
+           <input class="form-control" name="endDate" type="date"  [(ngModel)]="endDate" min="{{startDate}}"
+           (ngModelChange)="refresh.next()"  
+           dateFormat="Y-m-d "  placeholder="End Date" />
+
+          </div>
+         <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+           <label>Start Time</label>
+           <input class="form-control" type="time" name="eventStartTime"  [(ngModel)]="eventStartTime" 
+           (ngModelChange)="refresh.next()"  
+           dateFormat="H:i" placeholder="Start Time"  />
+    
+       </div>
+       <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+         <label>End Time</label>
+         <input class="form-control" type="time" name="eventEndTime" [(ngModel)]="eventEndTime" min="{{eventStartTime}}"
+       (ngModelChange)="refresh.next()"  
+       dateFormat="H:i"  placeholder="End Time" />
+       </div>
+        <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+           <label>Primary Color</label>
+           <input class="form-control" type="color" name="primaryColor"  [(ngModel)]="primaryColor" 
+           (ngModelChange)="refresh.next()"  
+           dateFormat="H:i" placeholder="Start Time"  />
+    
+       </div>
+       <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+         <label>Secondary Color</label>
+         <input class="form-control" type="color" name="secondaryColor" [(ngModel)]="secondaryColor" 
+       (ngModelChange)="refresh.next()"  
+       dateFormat="H:i"  />
+       </div>
+       
+       <div class="col-12 col-md-12 col-lg-12 col-sm-12 mt-3">
+        <label>Event Type</label>
+        <input class="form-control" type="text" name="eventType" [(ngModel)]="eventType" 
+        (ngModelChange)="refresh.next()"     placeholder="Event Type" />
+          <!-- <select name="eventType"  class="form-control"  [(ngModel)]="eventType">
+            <option *ngFor="let event of eventOption" value="{{event.name}}">{{event.name}}</option>
+          </select> -->
+      </div>
+         
+
+        </div>
+         
+       <div class="submitBtnContainer">
+         <button type="submit"   class="btn btn-danger mt-4 submitBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp; SUBMIT </button>
+       </div>
+       
+      </form>
+      <!-- <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="about-label"><b>Mass type :</b></td>
+            <td>{{modalData?.event?.title }}</td>
+            <td> </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="about-label"><b>Start at :</b></td>
+            <td>{{modalData?.event?.start_time | date :' hh:mm aa'}}</td>
+            <td class="about-label"><b>End at :</b></td>
+            <td>{{modalData?.event?.end_time |date :' hh:mm aa'}}</td>
+          </tr>
+        </tbody>
+      </table> -->
+      <!-- <div class="text-center">
+        <button  class="btn btn-outline-primary">Edit</button>
+        <button  class="btn btn-outline-secondary" (click)="deleteEventDetail(modalData)" >Delete</button>
+      </div> -->
+   
+      <!-- <div class="row">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+         <button  class="btn btn-outline-primary">Edit</button>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+         <button  class="btn btn-outline-secondary">Delete</button>
+       </div>
+     </div> -->
+    </div>
+  </div>
+  <!-- <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="close()">
+      OK
+    </button>
+  </div> -->
+</ng-template>
+
+
+<!--Add Modal -->
+<div class="classifield modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="addUserLabel">Add Event</h5> -->
+        <p class="container"><b>Add New Event</b></p>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+           <!-- <form #addForm="ngForm" (ngSubmit)="eventAdd(addForm)" novalidate>
+
+             <div class="row">
+               <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+                 <label>Date</label>
+                 
+                <input class="form-control" name="selectedDate" type="text" mwlFlatpickr [(ngModel)]="selectedDate" minDate="today"
+                (ngModelChange)="refresh.next()"  [enableTime]="false"
+                dateFormat="Y-m-d "  placeholder="Date" />
+
+               </div>
+               <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+                <label>Event Type</label>
+                  <select name="eventType"  class="form-control"  [(ngModel)]="eventType">
+                    <option *ngFor="let event of eventOption" value="{{event.name}}">{{event.name}}</option>
+                  </select>
+              </div>
+              <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+                <label>Start Time</label>
+                <input class="form-control" type="text" name="eventStartTime" mwlFlatpickr [(ngModel)]="eventStartTime" 
+                (ngModelChange)="refresh.next()"  [enableTime]="true"
+                dateFormat="H:i" placeholder="Start Time" [noCalendar]="true" />
+              </div>
+              <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+                <label>End Time</label>
+                <input class="form-control" type="text" name="eventEndTime" mwlFlatpickr [(ngModel)]="eventEndTime"
+                (ngModelChange)="refresh.next()"  [enableTime]="true"
+                dateFormat="H:i"  placeholder="End Time" [noCalendar]="true" />
+              </div>
+              
+
+             </div>
+              
+              <div class="submitBtnContainer">
+                <button type="submit"   class="btn btn-danger mt-4 submitBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp; SUBMIT </button>
+              </div>
+            
+           </form> -->
+           <form #addForm="ngForm" (ngSubmit)="eventAdd(addForm)" novalidate>
+
+            <div class="row">
+              <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+                <label>Start Date</label>
+                 
+               <input class="form-control" name="startDate" type="date"  [(ngModel)]="startDate" min={{today}}
+               (ngModelChange)="refresh.next()"  placeholder="Start Date" />
+
+              </div>
+              <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+                <label>End Date</label>
+                 
+               <input class="form-control" name="endDate" type="date"  [(ngModel)]="endDate" min="{{startDate}}"
+               (ngModelChange)="refresh.next()"  
+               dateFormat="Y-m-d "  placeholder="End Date" />
+
+              </div>
+             <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+               <label>Start Time</label>
+               <input class="form-control" type="time" name="eventStartTime"  [(ngModel)]="eventStartTime" 
+               (ngModelChange)="refresh.next()"  
+               dateFormat="H:i" placeholder="Start Time"  />
+        
+           </div>
+           <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+             <label>End Time</label>
+             <input class="form-control" type="time" name="eventEndTime" [(ngModel)]="eventEndTime" min="{{eventStartTime}}"
+           (ngModelChange)="refresh.next()"  
+           dateFormat="H:i"  placeholder="End Time" />
+           </div>
+            <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+               <label>Primary Color</label>
+               <input class="form-control" type="color" name="primaryColor"  [(ngModel)]="primaryColor" 
+               (ngModelChange)="refresh.next()"  
+               dateFormat="H:i" placeholder="Start Time"  />
+        
+           </div>
+           <div class="col-6 col-md-6 col-lg-6 col-sm-6 mt-3">
+             <label>Secondary Color</label>
+             <input class="form-control" type="color" name="secondaryColor" [(ngModel)]="secondaryColor" 
+           (ngModelChange)="refresh.next()"  
+           dateFormat="H:i"  placeholder="End Time" />
+           </div>
+           
+           <div class="col-12 col-md-12 col-lg-12 col-sm-12 mt-3">
+            <label>Event Type</label>
+            <input class="form-control" type="text" name="eventType" [(ngModel)]="eventType" 
+            (ngModelChange)="refresh.next()"     placeholder="Event Type" />
+              <!-- <select name="eventType"  class="form-control"  [(ngModel)]="eventType">
+                <option *ngFor="let event of eventOption" value="{{event.name}}">{{event.name}}</option>
+              </select> -->
+          </div>
+             
+
+            </div>
+             
+           <div class="submitBtnContainer">
+             <button type="submit"   class="btn btn-danger mt-4 submitBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp; SUBMIT </button>
+           </div>
+           
+          </form>
+      </div>
+      <div class="modal-footer">
+       
+       
+      </div>
+    </div>
+  </div>
+</div>
+

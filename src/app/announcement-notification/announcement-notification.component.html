@@ -1,0 +1,29 @@
+    <div class="notify-wrapper">
+        <div class="notify-header custom-card">
+            <div class="logo custom-card">
+
+            </div>
+        </div>
+        <div class="content">
+            
+            <div *ngIf="mediaDisplay=='video'" id="video-holder" class="video video-backdrop">
+                <video controls="true" id="vid" autoplay="autoplay" loop>
+            <source src="{{announceData.mediaUrl}}" type="video/mp4">
+            <source src="{{announceData.mediaUrl}}" type="video/ogg">
+            Your browser does not support HTML video.
+            </video>
+            </div>
+        
+            <div *ngIf="mediaDisplay=='image'" class="notify-img" [ngStyle]="{'background-image': 'url(' + announceData.mediaUrl + ')'}">
+            </div>
+        
+            <div *ngIf="mediaDisplay=='audio'" class="audiobg">
+                <img alt="https://www.freepik.com/vectors/background" hidden>
+                <audio controls>
+                    <source src="{{announceData.mediaUrl}}" type="audio/ogg">
+                    <source src="{{announceData.mediaUrl}}" type="audio/mpeg">
+                Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </div>

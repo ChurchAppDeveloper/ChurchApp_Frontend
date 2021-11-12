@@ -1,0 +1,191 @@
+<!-- Modal -->
+<div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addUserLabel">{{modelTitle}} ANNOUNCEMENT</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form #addForm="ngForm" (ngSubmit)="uploadBanner(addForm)" novalidate>
+        <div class="modal-body">
+       
+            <div class="input-outer">
+              <input type="text" class="form-control input-login" name="announceTitle" [(ngModel)]="announceTitle" placeholder="ENTER ANNOUNCEMENT TITLE">
+          </div>
+          <div class="input-outer">
+              <input type="url" class="textarea input-login resize-ta" name="announceContent" [(ngModel)]="announceContent" placeholder="ENTER LINK">
+              <!-- <input type="text" role="textbox" height="100" class="form-control input-login" placeholder="ANNOUNCEMENT CONTENT"> -->
+          </div>
+          <div class="row row-null">
+              <div *ngIf="fileUploadFlag">
+                  <div class="uploaded-img" style=" position: relative;">
+                      
+                      <!-- <img [src]="url" width="200" height="200"> -->
+                      <div class="padding_class_filename">
+                        <h6 class="banner-h6">{{fileName}}</h6>
+                      </div>
+                     
+                      <div class="remove-banner" >
+                        <div (click)="removerBanner()">x</div>
+                        
+                      </div>
+                      <img [src]="url" *ngIf="format==='image' && url" width="200" height="200">
+                      <!-- <img src="../../assets/images/pdf.png" *ngIf="format==='pdf' && url"  height="200"> -->
+                    
+                      <video [src]="url" *ngIf="format==='video' && url" height="200" controls></video>
+                      <!-- <ngx-doc-viewer *ngIf="format === 'pdf'" url="url" viewer="google"
+                          style="width:100%;height:93vh;">
+                      </ngx-doc-viewer> -->
+                      <iframe [src]="urlSafe" *ngIf="format==='pdf' && url"  height="200px"></iframe>
+                   
+                  </div>
+              </div>
+             
+              <div class="file-upload">
+                  <div *ngIf="!fileUploadFlag" class="image-upload-wrap">
+                    <input class="file-upload-input" type='file' name="" (change)="onSelectFile($event)" accept="application/pdf, image/*, video/mp4, video/x-m4v, video/*" />
+                    <div class="drag-text">
+                      <h3>Drag and drop a file or select add File</h3>
+                    </div>
+                  </div>
+                  <!-- <div class="file-upload-content">
+                    <img class="file-upload-image" src="#" alt="your image" />
+                    <div class="image-title-wrap">
+                      <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                    </div>
+                  </div> -->
+                </div>
+              <!-- <input type="file" id="upload" (change)="onSelectFile($event)" hidden/>
+                  <label class="media" for="upload">MEDIA UPLOAD</label>
+                  <p class="align" *ngIf="fileName">{{fileName}}</p> -->
+          </div>
+        
+           
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary login-btn" [disabled]="loading"><i class="fa fa-spinner fa-spin" *ngIf="loading"></i> SUBMIT & SEND ANNOUNCEMENT</button>
+          <!-- <button type="button" *ngIf="isEdit==true" class="btn btn-primary login-btn" (click)="updateAnnonce()">UPDATE ANNOUNCEMENT</button> -->
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="announcement-wrapper custom-card">
+    <!-- <div class="header">
+        <h4>ANNOUNCEMENT</h4>
+    </div> -->
+    <div class="announcement-content">
+      <h4 class="no-data" *ngIf="announcementData.length === 0">NO ANNOUNCEMENT AVAILABLE</h4>
+      <div class="table-responsive">
+        <table *ngIf="announcementData.length > 0" class="table mt-5 ">
+          <thead>
+            <tr>
+              <th scope="col">TITLE</th>
+              <th scope="col">LINK</th>
+              <th scope="col">DOCUMENTS</th>
+              <th>DELETE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let announce of announcementData">
+              <!-- <td>
+                  <img class="custom-card" [src]="class.endpoint" width="50" height="50">
+              </td> -->
+              <td style="width: 45%;">
+                {{announce?.title}}
+              </td>
+              <td>
+                <a  (click)="linkOpen(announce)">
+                  <!-- {{announce?.description}} -->
+                  <div  class="link-style" *ngIf="announce?.description != ''">
+                    <i title={{announce?.description}} class="fa fa-external-link" aria-hidden="true"></i>
+                  </div>
+                 
+
+                  <!-- <img class="custom-card" src="../../assets/images/gallery@2x.png"  width="50" height="50"> -->
+                </a>
+                <span *ngIf="announce?.description == ''"> - </span>
+                 
+              </td>
+              <td>
+                <div *ngIf="announce.filename==null" >
+                        No File Found
+                </div>
+                <div class="img-holder">
+                  
+                  <!--   -->
+                  <a  *ngIf="announce.filename!=null" class="link-style" (click)=" getImage(announce) ">
+                    Open File
+                    <!-- <img class="custom-card" src="../../assets/images/gallery@2x.png"  width="50" height="50"> -->
+                  </a>
+                
+                </div>
+                <!-- <div *ngIf="announce.filename!=null"  class="img-holder">
+                  
+                  <img class="custom-card" [src]="getImage(announce)" width="50" height="50">
+                
+                </div> -->
+              </td>
+              <td>
+                <!-- <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>  -->
+                <div class="delete"  (click)="deleteAnnounce(announce)"></div> 
+  
+                <!-- <div *ngIf="userRole=='Contributor'" class="delete-disable"></div> -->
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+        <!-- <div class="announcement-tile row row-null" *ngFor="let announce of announcementData">
+            <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+                {{announce?.title}}
+            </div>
+            <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                {{announce?.description}}
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 col-lg-2 media-url">
+                <div  class="img-holder">
+                <img class="custom-card" [src]="getImage(announce)" width="50" height="50">
+                </div>
+            </div>
+          
+            <div *ngIf="userRole!='Contributor'" class="col-1 col-sm-1 col-md-1 col-lg-1 delete" (click)="deleteAnnounce(announce)"></div>
+          
+        </div> -->
+    </div>
+</div>
+
+<div class="modal fade" id="documentView" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-content1">
+      <div class="row">
+        <div class="col-6">
+
+        </div>
+        <div class="col-6" >
+          <button style="float: right; padding: 14px;" type="button" class="btn-close"
+          (click)="docModal()" ></button>
+        </div>
+      </div>
+      <div class="modal-header1">
+       
+        <!-- <h5 class="modal-title" id="addUserLabel">{{modelTitle}} ANNOUNCEMENT</h5> -->
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+        <ngx-doc-viewer *ngIf="document_mimetype == true" [url]="getUrl" viewer="google"
+            style="width:100%;height:93vh;">
+        </ngx-doc-viewer>
+        <video id="my_video_1"  *ngIf="video_mimetype == true" [src]="getUrl"  controls  style="width: 100%;"></video>
+        <div *ngIf="image_mimetype == true" class="image_view">
+          <img  [src]="getUrl" style="width: 400px;">
+        </div>
+        <!-- <button (click)="playPause()">Play/Pause</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="userRole!='Contributor'" class="add-user custom-card" (click)="openModal()"></div>

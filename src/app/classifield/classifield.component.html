@@ -1,0 +1,131 @@
+
+<!--Add Modal -->
+<div class="classifield modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form #addForm="ngForm" (ngSubmit)="uploadBanner(addForm)" novalidate>
+          <div class="modal-header">
+            <h5 class="modal-title" id="addUserLabel">{{modelTitle}} CLASSIFIELD</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-outer">
+              <div class="row row-null">
+                <div class="col-5 col-sm-5 col-md-5 col-lg-5 row-null">
+                  <input type="text" class="form-control input2" name="name" [(ngModel)]="name"  placeholder="ENTER NAME">
+                </div>
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 row-null"></div>
+                <div class="col-5 col-sm-5 col-md-5 col-lg-5 row-null">
+                  <input type="number" class="form-control input2" name="phoneNumber" [(ngModel)]="phoneNumber"  placeholder="ENTER PHONE NUMBER">
+                </div>
+              </div>
+                  
+                  
+                  
+                  <div class="row row-null" style="margin-top: 15px;">
+                  
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 row-null">
+                        <input *ngIf="!createBusinessFlag" class="btn btn-secondary dropdown-toggle input-login drop-arrow"  type="text" name="businessTypeValue" [(ngModel)]="businessTypeValue" (ngModelChange)="businessTypeValueChange($event)" data-bs-toggle="dropdown" aria-expanded="false" autocomplete="off" placeholder="Select Business Type">
+                        <ul class="dropdown-menu" style="overflow-x: auto !important;
+                        height: 240px !important;" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" *ngFor="let type of businessType" [value]="type.businessId"  (click)="changeVal(type)">{{type.businessName}}</a></li>
+                        </ul>
+                        <input *ngIf="createBusinessFlag" type="text" class="form-control input-login" name="business" [(ngModel)]="business" placeholder="CREATE NEW BUSINESS TYPE">
+                        
+                        <h4 *ngIf="!createBusinessFlag" type="button" style="text-decoration: underline;" class="business-btn" (click)="setBusinessFlag()">Click Here to Add Business Type If Type is not present in list</h4>
+                        <div class="row">
+                          <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                            <h4 *ngIf="createBusinessFlag" type="button" style="text-decoration: underline;" class="business-btn" (click)="createBusiness()">ADD BUSINESS TYPE</h4>
+                          </div>
+                          <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                            <h4 *ngIf="createBusinessFlag" type="button" style="text-decoration: underline;" class="business-btn" (click)="setBusinessFlag()">CANCEL</h4>
+                          </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="row row-null" style="margin-top: 15px;">
+                  <div class="col-5 col-sm-5 col-md-5 col-lg-5 row-null outer">
+                    <label>Image : </label>
+                    <input type="file" id="upload" accept="image/*" name="" (change)="onSelectFile($event)" hidden/>
+                    <label class="media" for="upload"> UPLOAD SLIDE</label><br>
+                    
+                   
+                  </div>
+                  <div class="col-2 col-sm-2 col-md-2 col-lg-2 row-null">
+                      <!-- <h4 class="or" *ngIf="!createBusinessFlag">or</h4>
+                      <h4 class="or" *ngIf="createBusinessFlag" style="cursor: pointer;text-decoration: underline;" (click)="setBusinessFlag()">back</h4> -->
+                  </div>
+                  <div class="col-5 col-sm-5 col-md-5 col-lg-5 row-null" style="overflow: auto;">
+                    <p class="banner-h6">{{fileName}}</p>
+                  </div>
+              </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" *ngIf="!createBusinessFlag" class="btn btn-primary login-btn" [disabled]="loading"><i class="fa fa-spinner fa-spin" *ngIf="loading"></i> CREATE CLASSIFIELD </button>
+            <!-- <button type="button"  *ngIf="isEdit===true" class="btn btn-primary login-btn" (click)="update()">UPDATE </button> -->
+          </div>
+        </form>
+     
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="user-wrapper custom-card">
+    <!-- <div class="col-5 col-sm-5 col-md-5 col-lg-5 row-null float-right">
+      <input type="text" class="form-control input2" [(ngModel)]="search" placeholder="Search">
+    </div> -->
+    <h4 class="no-data" *ngIf="classifieldsList.length == 0">NO CLASSIFIELDS AVAILABLE</h4>
+    <div class="table-responsive">
+      <table *ngIf="classifieldsList.length > 0" class="table mt-5">
+        <thead>
+          <tr>
+            <th scope="col">SLIDE</th>
+            <th scope="col">NAME</th>
+            <th scope="col">PHONE NUMBER</th>
+            <th scope="col">BUSINESS TYPE</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let class of classifieldsList">
+            <td>
+                <img class="custom-card" [src]="baseUrl + class.imagename" width="50" height="50">
+            </td>
+            <td>
+                {{class.businessName}}
+            </td>
+            <td>{{class.phoneNumber}}</td>
+            <td>
+              {{class.businessTypeName}}
+            </td>
+            <td>
+              <div  class="delete" (click)="deleteClassifields(class)"></div> 
+              <!-- <div class="row">
+                 <div class="col-md-4">
+                  <div  class="delete" (click)="deleteClassifields(class.classifieldId)"></div> 
+                 </div>
+                 <div class="col-md-4">
+                  <div  class="edit" (click)="editClassifields(class)"></div>
+                </div>
+                <div class="col-md-4">
+                  <div  class="view" (click)="viewClassifields(class)"></div>
+                </div>
+              </div> -->
+
+              <!-- <div *ngIf="userRole=='Contributor'" class="delete-disable"></div> -->
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+   
+        <!-- <h4 class="no-user">NO USER AVAILABLE</h4> -->
+  </div>
+  
+  <div *ngIf="userRole!='Contributor'" class="add-user custom-card" (click)="openModal()"></div>
+  
+  

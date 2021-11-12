@@ -1,0 +1,488 @@
+<div class="mass-wrapper custom-card">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home"
+        aria-selected="true">DAILY</a>
+    </li>
+    <!-- <li class="nav-item" role="presentation">
+        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">WEEKEND</a>
+        </li> -->
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+        aria-selected="false">OTHERS</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <!--Monday slot start-->
+      <div class="row totalWidth">
+        <div class="col-md-3 content-align">
+          <p>MONDAY</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="mondayStartTime"></ngb-timepicker>
+        </div>
+        <div class="col-md-1 content-align">
+          <input class="form-check-input toogle" type="checkbox" data-toggle="tooltip" data-placement="right"
+            title="{{startReminder}}" id="flexSwitchCheckChecked" [checked]="mondayStartReminder"
+            (change)="mondayRemainder($event.target.checked,'startReminder')">
+        </div>
+        <div class="col-md-1 content-align">
+          <p>TO</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="mondayEndTime"></ngb-timepicker>
+        </div>
+
+        <div class="col-md-1 content-align">
+          <div class="confirm" (click)="updateMonday()">ADD</div>
+        </div>
+
+      </div>
+      <div class="table-responsive">
+        <table class="table" *ngIf="mondaySlotList.length > 0">
+          <thead>
+            <tr class="table-conteht">
+  
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Notification</th>
+              <th>Action</th>
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let slot of mondaySlotList; let i = index">
+              <td>{{slot?.start_time}}</td>
+              <td>{{slot?.end_time}}</td>
+              <td>{{slot?.notification}}</td>
+              <td>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="edit" (click)="mondayEditSlot(i,slot)"></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="delete" (click)="mondaySlotList.splice(i, 1)"></div>
+                  </div>
+  
+                </div>
+              </td>
+  
+            </tr>
+  
+          </tbody>
+  
+        </table>
+      </div>
+     
+      <!--Monday slot end-->
+      <!--Tuesday slot start-->
+      <div class="row totalWidth">
+        <div class="col-md-3 content-align">
+          <p>TUESDAY</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="tuesdayStartTime"></ngb-timepicker>
+        </div>
+        <div class="col-md-1 content-align">
+          <input class="form-check-input toogle" type="checkbox" data-toggle="tooltip" data-placement="right"
+            title="{{startReminder}}" id="flexSwitchCheckChecked" [checked]="tuesdayStartReminder"
+            (change)="tuesdayRemainder($event.target.checked,'startReminder')">
+        </div>
+        <div class="col-md-1 content-align">
+          <p>TO</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="tuesdayEndTime"></ngb-timepicker>
+        </div>
+
+        <div class="col-md-1 content-align">
+          <div class="confirm" (click)="updateTuesday()">ADD</div>
+        </div>
+
+      </div>
+      <table class="table" *ngIf="tuesdaySlotList.length > 0">
+        <thead>
+          <tr class="table-conteht">
+
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Notification</th>
+            <th>Action</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let slot of tuesdaySlotList; let i = index">
+            <td>{{slot?.start_time}}</td>
+            <td>{{slot?.end_time}}</td>
+            <td>{{slot?.notification}}</td>
+            <td>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="edit" (click)="tuesdayEditSlot(i,slot)"></div>
+                </div>
+                <div class="col-md-4">
+                  <div class="delete" (click)="tuesdaySlotList.splice(i, 1)"></div>
+                </div>
+
+              </div>
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+      <!--Tuesday slot end-->
+      <!--Wednesday slot start-->
+      <div class="row totalWidth">
+        <div class="col-md-3 content-align">
+          <p>WEDNESDAY</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="wednesdayStartTime"></ngb-timepicker>
+        </div>
+        <div class="col-md-1 content-align">
+          <input class="form-check-input toogle" type="checkbox" data-toggle="tooltip" data-placement="right"
+            title="{{startReminder}}" id="flexSwitchCheckChecked" [checked]="wednesdayStartReminder"
+            (change)="wednesdayRemainder($event.target.checked,'startReminder')">
+        </div>
+        <div class="col-md-1 content-align">
+          <p>TO</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="wednesdayEndTime"></ngb-timepicker>
+        </div>
+
+        <div class="col-md-1 content-align">
+          <div class="confirm" (click)="updateWednesday()">ADD</div>
+        </div>
+
+      </div>
+      <div class="table-responsive">
+        <table class="table" *ngIf="wednesdaySlotList.length > 0">
+          <thead>
+            <tr class="table-conteht">
+  
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Notification</th>
+              <th>Action</th>
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let slot of wednesdaySlotList; let i = index">
+              <td>{{slot?.start_time}}</td>
+              <td>{{slot?.end_time}}</td>
+              <td>{{slot?.notification}}</td>
+              <td>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="edit" (click)="wednesdayEditSlot(i,slot)"></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="delete" (click)="wednesdaySlotList.splice(i, 1)"></div>
+                  </div>
+  
+                </div>
+              </td>
+  
+            </tr>
+  
+          </tbody>
+  
+        </table>
+      </div>
+      
+      <!--Wednesday slot end-->
+
+      <!--Thursday slot start-->
+      <div class="row totalWidth">
+        <div class="col-md-3 content-align">
+          <p>THURSDAY</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="thursdayStartTime"></ngb-timepicker>
+        </div>
+        <div class="col-md-1 content-align">
+          <input class="form-check-input toogle" type="checkbox" data-toggle="tooltip" data-placement="right"
+            title="{{startReminder}}" id="flexSwitchCheckChecked" [checked]="thursdayStartReminder"
+            (change)="thursdayRemainder($event.target.checked,'startReminder')">
+        </div>
+        <div class="col-md-1 content-align">
+          <p>TO</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="thursdayEndTime"></ngb-timepicker>
+        </div>
+
+        <div class="col-md-1 content-align">
+          <div class="confirm" (click)="updateThursday()">ADD</div>
+        </div>
+
+      </div>
+      <div class="table-responsive">
+        <table class="table" *ngIf="thursdaySlotList.length > 0">
+          <thead>
+            <tr class="table-conteht">
+  
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Notification</th>
+              <th>Action</th>
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let slot of thursdaySlotList; let i = index">
+              <td>{{slot?.start_time}}</td>
+              <td>{{slot?.end_time}}</td>
+              <td>{{slot?.notification}}</td>
+              <td>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="edit" (click)="thursdayEditSlot(i,slot)"></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="delete" (click)="thursdaySlotList.splice(i, 1)"></div>
+                  </div>
+  
+                </div>
+              </td>
+  
+            </tr>
+  
+          </tbody>
+  
+        </table>
+      </div>
+     
+      <!--Thursday slot end-->
+      <!--Friday slot start-->
+      <div class="row totalWidth">
+        <div class="col-md-3 content-align">
+          <p>FRIDAY</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="fridayStartTime"></ngb-timepicker>
+        </div>
+        <div class="col-md-1 content-align">
+          <input class="form-check-input toogle" type="checkbox" data-toggle="tooltip" data-placement="right"
+            title="{{startReminder}}" id="flexSwitchCheckChecked" [checked]="fridayStartReminder"
+            (change)="fridayRemainder($event.target.checked,'startReminder')">
+        </div>
+        <div class="col-md-1 content-align">
+          <p>TO</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="fridayEndTime"></ngb-timepicker>
+        </div>
+
+        <div class="col-md-1 content-align">
+          <div class="confirm" (click)="updateFriday()">ADD</div>
+        </div>
+
+      </div>
+      <div class="table-responsive">
+        <table class="table" *ngIf="fridaySlotList.length > 0">
+          <thead>
+            <tr class="table-conteht">
+  
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Notification</th>
+              <th>Action</th>
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let slot of fridaySlotList; let i = index">
+              <td>{{slot?.start_time}}</td>
+              <td>{{slot?.end_time}}</td>
+              <td>{{slot?.notification}}</td>
+              <td>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="edit" (click)="fridayEditSlot(i,slot)"></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="delete" (click)="fridaySlotList.splice(i, 1)"></div>
+                  </div>
+  
+                </div>
+              </td>
+  
+            </tr>
+  
+          </tbody>
+  
+        </table>
+      </div>
+     
+      <!--Friday slot end-->
+      <!--Saturday slot start-->
+      <div class="row totalWidth">
+        <div class="col-md-3 content-align">
+          <p>SATURDAY</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="saturdayStartTime"></ngb-timepicker>
+        </div>
+        <div class="col-md-1 content-align">
+          <input class="form-check-input toogle" type="checkbox" data-toggle="tooltip" data-placement="right"
+            title="{{startReminder}}" id="flexSwitchCheckChecked" [checked]="saturdayStartReminder"
+            (change)="saturdayRemainder($event.target.checked,'startReminder')">
+        </div>
+        <div class="col-md-1 content-align">
+          <p>TO</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="saturdayEndTime"></ngb-timepicker>
+        </div>
+
+        <div class="col-md-1 content-align">
+          <div class="confirm" (click)="updateSaturday()">ADD</div>
+        </div>
+
+      </div>
+      <div class="table-responsive">
+        <table class="table" *ngIf="saturdaySlotList.length > 0">
+          <thead>
+            <tr class="table-conteht">
+  
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Notification</th>
+              <th>Action</th>
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let slot of saturdaySlotList; let i = index">
+              <td>{{slot?.start_time}}</td>
+              <td>{{slot?.end_time}}</td>
+              <td>{{slot?.notification}}</td>
+              <td>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="edit" (click)="saturdayEditSlot(i,slot)"></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="delete" (click)="saturdaySlotList.splice(i, 1)"></div>
+                  </div>
+  
+                </div>
+              </td>
+  
+            </tr>
+  
+          </tbody>
+  
+        </table>
+      </div>
+      
+      <!--saturday slot end-->
+
+      <!--Sunday slot start-->
+      <div class="row totalWidth">
+        <div class="col-md-3 content-align">
+          <p>SUNDAY</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="sundayStartTime"></ngb-timepicker>
+        </div>
+        <div class="col-md-1 content-align">
+          <input class="form-check-input toogle" type="checkbox" data-toggle="tooltip" data-placement="right"
+            title="{{startReminder}}" id="flexSwitchCheckChecked" [checked]="sundayStartReminder"
+            (change)="sundayRemainder($event.target.checked,'startReminder')">
+        </div>
+        <div class="col-md-1 content-align">
+          <p>TO</p>
+        </div>
+        <div class="col-md-2">
+          <ngb-timepicker [(ngModel)]="sundayEndTime"></ngb-timepicker>
+        </div>
+
+        <div class="col-md-1 content-align">
+          <div class="confirm" (click)="updateSunday()">ADD</div>
+        </div>
+
+      </div>
+      <div class="table-responsive">
+        <table class="table" *ngIf="sundaySlotList.length > 0">
+          <thead>
+            <tr class="table-conteht">
+  
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Notification</th>
+              <th>Action</th>
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let slot of sundaySlotList; let i = index">
+              <td>{{slot?.start_time}}</td>
+              <td>{{slot?.end_time}}</td>
+              <td>{{slot?.notification}}</td>
+              <td>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="edit" (click)="sundayEditSlot(i,slot)"></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="delete" (click)="sundaySlotList.splice(i, 1)"></div>
+                  </div>
+  
+                </div>
+              </td>
+  
+            </tr>
+  
+          </tbody>
+  
+        </table>
+      </div>
+      
+      <!--sunday slot end-->
+    </div>
+
+    <div class="tab-pane fade tab-weekend" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <div class="table-responsive">
+        <table class="table-offset">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let mass of massEventMain">
+              <td>{{mass.days}}</td>
+              <td class="toogle-out">
+                <ngb-timepicker [(ngModel)]="mass.startTimeParsed"></ngb-timepicker>
+              </td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input toogle" type="checkbox" data-toggle="tooltip" data-placement="right"
+                    title="{{mass.startReminder}}" id="flexSwitchCheckChecked" [checked]="!mass.startReminder"
+                    (change)="updateValues($event.target.checked,'startReminder')">
+                </div>
+              </td>
+              <td>
+                <div class="confirm" (click)="updateEvent(mass)">CONFIRM</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     
+    </div>
+  </div>
+</div>
+<div class="add-user custom-card" (click)="update()"></div>

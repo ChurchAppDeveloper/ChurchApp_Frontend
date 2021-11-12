@@ -1,0 +1,64 @@
+<div class="nav-wrapper row row-null">
+    <div class="col-2 col-sm-2 col-md-2 col-lg-3 nav-sidebar col-null">
+        <div class="logo-nav custom-card mouse-pointer" routerLink="/Navigation/Banner">
+
+        </div>
+        <hr class="hr-line"/>
+        <ul class="col-null nav-tool">
+            <li class="row row-null" routerLink="/Navigation/Banner" data-toggle="tooltip" data-placement="right" title="BANNER" (click)="setActiveTaab('banner')" [ngClass]="{'activeTab' : currentTab == 'banner'}">
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-null mob-disp"></div>
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-null" [ngClass]="{'banner-img' : currentTab != 'banner','banner-img-active' : currentTab == 'banner'}"></div>
+                <div class="col-9 col-sm-8 col-md-8 col-lg-9 col-null mob-disp nav-txt">BANNER</div>
+            </li>
+            <li class="row row-null" routerLink="/Navigation/Mass-timing" data-toggle="tooltip" data-placement="right" title="MASS TIMING" (click)="setActiveTaab('mass')" [ngClass]="{'activeTab' : currentTab == 'mass'}">
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-null mob-disp"></div>
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-null" [ngClass]="{'mass-img' : currentTab != 'mass','mass-img-active' : currentTab == 'mass'}"></div>
+                <div class="col-9 col-sm-8 col-md-8 col-lg-9 col-null mob-disp nav-txt">MASS TIMES</div>
+            </li>
+            <li class="row row-null" routerLink="/Navigation/Announcement" data-toggle="tooltip" data-placement="right" title="ANNOUNCEMENT" (click)="setActiveTaab('announcement')" [ngClass]="{'activeTab' : currentTab == 'announcement'}">
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-null mob-disp"></div>
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-null" [ngClass]="{'announcement-img' : currentTab != 'announcement','announcement-img-active' : currentTab == 'announcement'}"></div>
+                <div class="col-9 col-sm-8 col-md-8 col-lg-9 col-null mob-disp nav-txt">ANNOUNCEMENT</div>
+            </li>
+            <!-- <li class="row row-null" routerLink="/Navigation/Confession" data-toggle="tooltip" data-placement="right" title="CONFESSION" (click)="setActiveTaab('confession')" [ngClass]="{'activeTab' : currentTab == 'confession'}">
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-null mob-disp"></div>
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-null" [ngClass]="{'confession-img' : currentTab != 'confession','confession-img-active' : currentTab == 'confession'}"></div>
+                <div class="col-9 col-sm-8 col-md-8 col-lg-9 col-null mob-disp nav-txt">CONFESSION</div>
+            </li> -->
+            <li class="row row-null" routerLink="/Navigation/Profile" data-toggle="tooltip" data-placement="right" title="PROFILE URLs" (click)="setActiveTaab('profile')" [ngClass]="{'activeTab' : currentTab == 'profile'}">
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-null mob-disp"></div>
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-null" [ngClass]="{'profile-img' : currentTab != 'profile','profile-img-active' : currentTab == 'profile'}"></div>
+                <div class="col-9 col-sm-8 col-md-8 col-lg-9 col-null mob-disp nav-txt">PROFILE</div>
+            </li>
+            <li class="row row-null" routerLink="/Navigation/Classifield" data-toggle="tooltip" data-placement="right" title="CLASSIFIELDS" (click)="setActiveTaab('classifield')" [ngClass]="{'activeTab' : currentTab == 'classifield'}">
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-null mob-disp"></div>
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-null" [ngClass]="{'classifield-img' : currentTab != 'classifield','classifield-img-active' : currentTab == 'classifield'}"></div>
+                <div class="col-9 col-sm-8 col-md-8 col-lg-9 col-null mob-disp nav-txt">CLASSIFIELDS</div>
+            </li>
+        </ul>
+        <hr class="hr-line"/>
+        <ul class="col-null logout-span nav-tool">
+            <li class="row row-null" routerLink="/Navigation/User" data-toggle="tooltip" data-placement="right" title="USERS" (click)="setActiveTaab('user')" [ngClass]="{'activeTab' : currentTab == 'user'}">
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-null mob-disp"></div>
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-null" [ngClass]="{'user-img' : currentTab != 'user','user-img-active' : currentTab == 'user'}"></div>
+                <div class="col-9 col-sm-8 col-md-8 col-lg-9 col-null mob-disp nav-txt">USERS</div>
+            </li>
+            <li class="row row-null" (click)="setActiveTaab('logout')" data-toggle="tooltip" data-placement="right" title="LOGOUT" [ngClass]="{'activeTab' : currentTab == 'logout'}">
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-null mob-disp"></div>
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-null" [ngClass]="{'logout-img' : currentTab != 'logout','logout-img-active' : currentTab == 'logout'}"></div>
+                <div class="col-9 col-sm-8 col-md-8 col-lg-9 col-null mob-disp nav-txt">LOGOUT</div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-10 col-sm-10 col-md-10 col-lg-9 content col-null">
+        <div class="ph-number">
+            <div class="phone">{{userNumber}}
+                <!-- <div class="bulletIn" routerLink="/Navigation/Profile"></div> -->
+            </div>
+        </div>
+        <hr class="hr-line"/>
+        <div class="page-content mostly-customized-scrollbar">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

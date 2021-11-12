@@ -1,0 +1,63 @@
+<!-- Modal -->
+<div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addUserLabel">ADDING NEW BANNER</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- <img [src]="url" height="200"> <br/>
+            <input type='file' (change)="onSelectFile($event)"> -->
+            <div *ngIf="fileUploadFlag">
+                <div class="uploaded-img">
+                    <div class="remove-banner" (click)="removerBanner()">x</div>
+                    <img [src]="url" *ngIf="format==='image' && url" width="200" height="200">
+                    
+                    <video [src]="url" *ngIf="format==='video' && url" height="200" controls></video>
+                </div>
+            </div>
+            <h6 class="banner-h6">{{fileName}}</h6>
+            <div class="file-upload">
+                <div *ngIf="!fileUploadFlag" class="image-upload-wrap">
+                  <input class="file-upload-input" type='file' (change)="onSelectFile($event)" accept="image/*, video/mp4, video/x-m4v, video/*" />
+                  <div class="drag-text">
+                    <h3>Drag and drop a file or select add Image</h3>
+                  </div>
+                </div>
+                <!-- <div class="file-upload-content">
+                  <img class="file-upload-image" src="#" alt="your image" />
+                  <div class="image-title-wrap">
+                    <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                  </div>
+                </div> -->
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button *ngIf="!fileUploadFlag" type="button" class="btn btn-primary browse-btn" onclick="$('.file-upload-input').trigger( 'click' );">BROWSE IMAGE</button>
+          <button *ngIf="fileUploadFlag" type="button" class="btn btn-primary browse-btn" [disabled]="loading" (click)="uploadBanner()"><i class="fa fa-spinner fa-spin" *ngIf="loading"></i>UPLOAD IMAGE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+
+<div class="banner-wrapper row row-null">
+    <h4 *ngIf="bannerImageTile.length == 0" class="no-data">NO BANNER AVAILABLE</h4>
+    <div *ngFor="let banner of bannerImageTile" class="banner-holder col-12 col-sm-6 col-md-4 col-lg-4 row-null">
+        <div class="banner-frame-out">
+            <div class="banner-frame custom-card">
+                <!-- <div class="banner-tile" [ngStyle]="{'background-image': 'url(' + banner.endpoint + ')'}">
+                  <div class="delete custom-card" data-toggle="tooltip" data-placement="right" title="Delete Banner" (click)="delete(banner)"></div>
+                </div> -->
+                <div class="banner-tile" [ngStyle]="{'background-image': 'url('  + baseUrl + banner + ')'}">
+                  <div class="delete custom-card" data-toggle="tooltip" data-placement="right" title="Delete Banner" (click)="delete(banner)"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div  class="add-user custom-card" (click)="openModal()"></div>

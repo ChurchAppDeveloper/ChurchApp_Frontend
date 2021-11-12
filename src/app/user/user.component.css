@@ -1,0 +1,283 @@
+.user-wrapper{
+    margin: 30px 0px 30px 0px;
+    background-color: white;
+    border-radius: 25px;
+    padding: 15px;
+    /* overflow: scroll; */
+}
+
+.user-wrapper th{
+    text-align: center;
+    color: #E84747;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.no-user{
+    font-size: 14px;
+    text-align: center;
+}
+
+.user-wrapper td {
+    font-size: 14px;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.add-user{
+    background: white;
+    cursor: pointer;
+    background-image: url(../../assets/images/addingicon@2x.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    position: fixed;
+    z-index: 100;
+    bottom: 30px;
+    right: 30px;
+}
+
+.add-user-btn{
+    background-color: #e84747;
+}
+
+.login-btn{
+    background-color: #E84747;
+    font-size: 14px;
+    width: 120px;
+    border-radius: 20px;
+    height: 35px;
+    border: none;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.login-btn:focus{
+    box-shadow: 0 1px 16px rgba(232,71,71,.4), 0 1px 2px rgba(232,71,71,.5);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.input-login:focus{
+    box-shadow: 0 1px 16px rgba(232,71,71,.4), 0 1px 2px rgba(232,71,71,.5);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.input-login{
+    text-align: center;
+    border: 1px solid #e84747;
+    height: 40px;
+    width: 100%;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    color: #3e3e3e;
+    font-size: 14px;
+}
+
+.input-outer{
+    height: 100px;
+    width: 90%;
+    margin: auto;
+}
+
+/* .input-outer ul{
+    margin-left: 70px !important;
+} */
+
+.role-dropdown{
+    margin-top: -7px;
+    text-align: center;
+    border: none;
+    background-color: white;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.confirm{
+    color: #e84747;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.confirm-dul{
+    color: #ccc;
+    text-decoration: underline;
+}
+
+
+.confirm-gray{
+    color: #ffd2d2;
+    text-decoration: underline;
+    cursor: not-allowed;
+}
+
+.delete{
+    background-image: url(../../assets/images/trash-can@2x.png);
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: center;
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+}
+
+.edit{
+    background-image: url(../../assets/images/edit.png);
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: center;
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+}
+.view{
+    background-image: url(../../assets/images/notviewed.png);
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: center;
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+}
+.delete-disable{
+    background-image: url(../../assets/images/trash-can@2x.png);
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: center;
+    width: 100%;
+    height: 30px;
+    cursor: not-allowed;
+}
+
+::-webkit-input-placeholder { /* Edge */
+    color: #3e3e3e;
+    font-size: 14px;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #3e3e3e;
+    font-size: 14px;
+  }
+  
+  ::placeholder {
+    color: #3e3e3e;
+    font-size: 14px;
+  }
+
+  .drop-arrow{
+      background-image: url(../../assets/images/drop-arrow.png);
+      background-repeat: no-repeat;
+      background-size: 20px 20px;
+      padding-right: 25px;
+      background-position: right;
+  }
+
+  select{
+    border: none;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+
+
+.Table {
+    width: 100%;
+}
+
+.Cell{
+    border-bottom: 1px solid #7d7d7d;
+}
+
+.Heading .Cell {
+    display: table-cell;
+    width: 25%;
+    text-align: center;
+    height: 50px;
+    color: #e84747;
+    font-size: 16px;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+}
+
+.Heading .Row .Cell{
+    line-height: 45px;
+}
+
+.Row{
+    display: flex;
+}
+
+.Row .Cell {
+    display: table-cell;
+    width: 25%;
+    height: 50px;
+}
+
+.tuple {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.tuple input {
+    width: 100%;
+    text-align: center;
+    border: none;
+    font-size: 14px;
+    color: black;
+    font-weight: 500;
+}
+
+.tuple select {
+    width: 100px;
+    text-align: center;
+    border: none;
+    font-size: 14px;
+    color: black;
+    font-weight: 500;
+}
+
+.edit{
+    background-image: url(../../assets/images/edit.png);
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: center;
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+}
+
+.footer1{
+    margin-top: 10px;
+}
+
+.field-icon {
+    float: right;
+    margin-left: -25px;
+    margin-top: -38px;
+    position: relative;
+    z-index: 2;
+    padding-right: 25px;
+    cursor: pointer;
+  }
+  .toogle{
+      margin-left: 10px;
+  }
+  .content-align{
+      margin-top: 10px;
+      margin-left: 20px;
+      margin: auto;
+      padding: 20px;
+  }
+

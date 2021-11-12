@@ -1,0 +1,74 @@
+<div class="confession-wrapper custom-card">
+    <div class="set-schedule">
+        <div class="confession-header">
+            <h4> Schedule Confession</h4>
+        </div>
+        <div class="row row-null">
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3 ct-align row-null">
+                <div class="txt-alg">
+                    Date:<br>
+                    <input type="date" style="width: 145px;height: 25px;" [(ngModel)]="confDate" min="2021-05-07" [disabled]="userRole=='Contributor'">
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-2 col-lg-2 ct-align row-null">
+                <div class="txt-alg">
+                    Start Time:<br>
+                    <select name="time" id="time" [(ngModel)]="confStartTime" [disabled]="userRole=='Contributor'">
+                        <option *ngFor="let time of timeSlots" value="{{time.value}}">{{time.time}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-2 col-lg-2 ct-align row-null">
+                <div class="txt-alg">
+                    End Time:<br>
+                    <select name="time" id="time" [(ngModel)]="confEndTime" [disabled]="userRole=='Contributor'">
+                        <option *ngFor="let time of timeSlots" value="{{time.value}}">{{time.time}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-2 col-lg-2 ct-align row-null">
+                <div class="txt-alg">
+                    Duration:<br>
+                    <select name="time" id="time" [(ngModel)]="confDuration" [disabled]="userRole=='Contributor'">
+                        <option *ngFor="let item of durationList" value="{{item.value}}">{{item.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-2 col-lg-3 ct-align row-null">
+                <div *ngIf="userRole!='Contributor'" class="confirm" (click)="setConfession()">CONFIRM</div>
+            </div>
+        </div>
+    </div>
+    <div class="user-content">
+        <div class="schedule-header">
+            <h4>SCHEDULE LIST</h4>
+            <hr class="hr"/>
+        </div>
+        <div class="user-list">
+            <ul>
+                <li class="row row-null" *ngIf="slotData && slotData.Items.length > 0">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 row-null th-user">
+                        PHONE NUMBER
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 row-null th-user">
+                        SCHEDULE TIMING
+                    </div>
+                </li>
+                <div *ngIf="slotData && slotData.Items.length > 0">
+                    <li class="row row-null" *ngFor="let item of slotData.Items">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 row-null tr-user">
+                            {{item.phoneNumber}}
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 row-null tr-user">
+                            {{ item.startTime}} to {{item.endTime}}
+                        </div>
+                    </li>
+                </div>
+                <div style="text-align: center;margin-top: 60px;" *ngIf="!slotData || slotData.Items.length == 0">
+                    No Slots Booked
+                </div>
+
+            </ul>
+        </div>
+    </div>
+</div>

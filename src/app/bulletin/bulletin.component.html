@@ -1,0 +1,160 @@
+<div class="bulletin-wrapper">
+  <div class="about-us custom-card">
+    <!-- <div data-toggle="tooltip" data-placement="top" title="Edit Fields" class="edit-btn custom-card"
+      (click)="editBtn()"></div> -->
+    <!-- <h4 class="about-head">ABOUT US</h4>
+        <div class="about-content">
+            OUR PARISH OFFICE REMAINS CLOSED TO THE GENERAL PUBLIC. TO BEST SERVE YOU, WE HIGHLY ENCOURAGE YOU TO CONTACT US VIA E-MAIL: CHURCH@STBARNABASLB.ORG FOR THE FASTEST RESPONSE, OR CALL 562-424-8595, MONDAY-SATURDAY: 9:00AM-2:00PM AND SUNDAY: 9:00AM-12:00PM. YOU CAN ALSO DROP OFF ENVELOPES IN OUR OFFICE MAIL SLOT (to the left of the hand rail)
+        </div> -->
+    <div class="content table-responsive">
+      <form #addForm="ngForm" (ngSubmit)="updateProfile(addForm)" novalidate>
+        <div class="table-responsive">
+          <table class="table ">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="about-label">
+                  CONTACT US:
+                </td>
+                <td>
+                  <input class="about-input" type="text" value="" name="phoneNumber" [(ngModel)]="phoneNumber" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+                <td class="about-label">ABOUT US:</td>
+                <td>
+                  <input class="about-input" type="text" value="9787866650" name="aboutUs" [(ngModel)]="aboutUs" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+              </tr>
+    
+    
+              <tr>
+                <td class="about-label">
+                  ONLINE READING:
+                </td>
+                <td>
+                  <input class="about-input" type="text" value="" name="onlineReadingUrl" [(ngModel)]="onlineReadingUrl" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+                <td class="about-label">FACEBOOK:</td>
+                <td>
+                  <input class="about-input" type="text" value="9787866650" name="facebookUrl" [(ngModel)]="facebookUrl" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+              </tr>
+    
+    
+              <tr>
+                <td class="about-label">
+                  SCHOOL:
+                </td>
+                <td>
+                  <input class="about-input" type="text" value="" name="schoolUrl" [(ngModel)]="schoolUrl" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+                <td class="about-label">WEBSITE:</td>
+                <td>
+                  <input class="about-input" type="text" value="9787866650" name="websiteUrl" [(ngModel)]="websiteUrl" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+              </tr>
+    
+    
+              <tr>
+                <td class="about-label">
+                  BULLET-IN:
+                </td>
+                <td>
+                  <input class="about-input" type="text" value="" name="bulletinUrl" [(ngModel)]="bulletinUrl" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+                <td class="about-label">DONATE:</td>
+                <td>
+                  <input class="about-input" type="text" value="9787866650" name="donateUrl" [(ngModel)]="donateUrl" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+              </tr>
+    
+    
+              <tr>
+                <td class="about-label">
+                  MINISTERS:
+                </td>
+                <td>
+                  <input class="about-input" type="text" value="" name="ministersUrl" [(ngModel)]="ministersUrl" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+                <td class="about-label">PRAYER REQUEST:</td>
+                <td>
+                  <input class="about-input" type="text" value="9787866650" name="prayerRequestUtl" [(ngModel)]="prayerRequestUtl"
+                    [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+              </tr>
+    
+              <tr>
+                <td class="about-label">
+                  YOUTUBE:
+                </td>
+                <td>
+                  <input class="about-input" type="text" value="" name="youtubeUrl" [(ngModel)]="youtubeUrl" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+                <td class="about-label">
+                  Mass Timing Intention:
+                </td>
+                <td>
+                  <input class="about-input" type="text" value="" name="MassTimingIntention" [(ngModel)]="MassTimingIntention" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+              </tr>
+              <tr>
+                <td class="about-label">
+                  CONFESSION CONTACT:
+                </td>
+                <td>
+                  <input class="about-input" type="text" value="" name="confessionContact" [(ngModel)]="confessionContact" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+                <td class="about-label">
+                  CONFESSION Email:
+                </td>
+                <td>
+                  <input class="about-input" type="text" value="" name="confessionEmail" [(ngModel)]="confessionEmail" [disabled]="editFlag">
+                </td>
+                <td class="edit"></td>
+              </tr>
+              <tr>
+                <td class="about-label">
+                  CONFESSION DETAILS:
+                </td>
+                <td colspan="5">
+                  <textarea class="about-input" type="text" value="" name="confessionDetails" [(ngModel)]="confessionDetails" [disabled]="editFlag"></textarea>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+       
+        <div class="center-align" *ngIf="!editFlag">
+          <button class="login-btn" [disabled]="editFlag" type="submit"><i class="fa fa-spinner fa-spin" *ngIf="loading"></i> SUBMIT</button>
+        </div>
+      </form>
+    
+    </div>
+  </div>
+
+</div>
+
+<div class="add-user custom-card" (click)="editBtn()"></div>
+<!-- <div data-toggle="tooltip" data-placement="top" title="Edit Fields" class="edit-btn custom-card"
+(click)="editBtn()"></div> -->

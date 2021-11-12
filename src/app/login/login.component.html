@@ -1,0 +1,37 @@
+<div class="login-wrapper center-align">
+  <div class="login-card center-align card">
+    <div class="login-content">
+      <div class="logo-login">
+      </div>
+      <div class="btn-group1 row row-null">
+        <!-- <div class="col-3 col-sm-3 col-md-3 col-lg-3 row-null">
+                    <input type="text" class="form-control input-login" placeholder="EXT" [(ngModel)]="extension">
+                </div> -->
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 row-null">
+          <input type="text" class="form-control input-login" placeholder="ENTER PHONE NUMBER"
+            (ngModelChange)="loginFlag($event)" [(ngModel)]="sms">
+        </div>
+        <!-- This is for password Login -->
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 row-null mt-2">
+          <input type="{{passwordType}}" id="password-field" class="form-control input-login" [(ngModel)]="password" name="password" placeholder="ENTER PASSWORD" >
+          <span class="fa fa-fw fa-eye-slash  field-icon toggle-password" [ngClass]="{'fa-eye': visible === true, 'fa-eye-slash' : visible === false }" (click)="passwordTypeChange()" ></span>
+        </div>
+          <!-- This is for OTP Login -->
+        <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12 row-null mt-2" *ngIf="otpStatus==true">
+          <input type="text" class="form-control input-login" placeholder="ENTER OTP"
+            (ngModelChange)="otpChange($event)" [(ngModel)]="otp">
+        </div> -->
+     
+      </div>
+  
+      <div class="btn-group1">
+        <button class="btn btn-primary login-btn mt-2" (click)="checkUserAvailable(sms)" type="submit" [disabled]="loading"
+          *ngIf="otpStatus==false"><i class="fa fa-spinner fa-spin" *ngIf="loading"></i> Send OTP </button>&nbsp;&nbsp;
+        <button class="btn btn-primary login-btn mt-2" (click)="login()" [disabled]="loading"
+          *ngIf="otpStatus==true"><i class="fa fa-spinner fa-spin" *ngIf="loading"></i> Login</button>&nbsp;&nbsp;
+        <!-- <button class="btn btn-primary login-btn" routerLink="/Navigation/Banner">Banner</button> -->
+        <!-- <button *ngIf="otpFlag" class="btn btn-primary login-btn">VERIFY</button> -->
+      </div>
+    </div>
+  </div>
+</div>

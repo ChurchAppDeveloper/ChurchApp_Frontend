@@ -1,0 +1,179 @@
+
+<!-- Modal -->
+<div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addUserLabel">{{modelTitle}} USER</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form #addForm="ngForm" (ngSubmit)="addUser(addForm)" novalidate>
+        <div class="modal-body">
+          <div class="input-outer">
+            <div class="row">
+                 <div class="col-md-6">
+                  <input type="number" class="form-control input-login" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="ENTER PHONE NUMBER" >
+                 </div>
+                 <!-- <div class="col-md-6">
+                  <input class="btn btn-secondary dropdown-toggle input-login drop-arrow" type="button" name="role" [(ngModel)]="role" value="{{role}}" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" *ngFor="let role of roleList" [value]="role" (click)="roleSelection(role)">{{role}}</a></li>
+                  </ul>
+
+                </div> -->
+ 
+                <div class="col-md-6">
+
+                  <div>
+                    <input type="{{passwordType}}" id="password-field" class="form-control input-login" [(ngModel)]="password" name="password" placeholder="ENTER PASSWORD" >
+                    <span class="fa fa-fw fa-eye-slash  field-icon toggle-password" [ngClass]="{'fa-eye': visible === true, 'fa-eye-slash' : visible === false }" (click)="passwordTypeChange()" ></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="content-align">
+                    <label>Active Status</label>
+                    <input class="form-check-input toogle" type="checkbox" data-toggle="tooltip" data-placement="right"   (change)="changeStatus($event.target.checked)"
+                   [checked]="activeStatus"
+                     >
+                  </div>
+
+                </div>
+            </div>
+
+                <!-- <input type="number" class="form-control input-login" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="ENTER PHONE NUMBER" [disabled]="isEdit">
+                <input class="btn btn-secondary dropdown-toggle input-login drop-arrow" type="button" name="role" [(ngModel)]="role" value="{{role}}" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" *ngFor="let role of roleList" [value]="role" (click)="roleSelection(role)">{{role}}</a></li>
+                </ul>
+                <div *ngIf="role=='Admin' && passwordField">
+                  <input type="{{passwordType}}" id="password-field" class="form-control input-login" [(ngModel)]="password" name="password" placeholder="ENTER PASSWORD" >
+                  <span class="fa fa-fw fa-eye-slash  field-icon toggle-password" [ngClass]="{'fa-eye': visible === true, 'fa-eye-slash' : visible === false }" (click)="passwordTypeChange()" ></span>
+                </div> -->
+       
+          
+            </div>
+            <!-- <div>
+              <button type="submit"  *ngIf="isCreate==true" class="btn btn-primary login-btn"  [disabled]="loading"><i class="fa fa-spinner fa-spin" *ngIf="loading"></i> ADD USER</button>
+              <button type="button"  *ngIf="isEdit==true" class="btn btn-primary login-btn" (click)="edit()" [disabled]="loading"><i class="fa fa-spinner fa-spin" *ngIf="loading"></i> EDIT USER</button>
+
+            </div> -->
+           
+        </div>
+        <div class="modal-footer footer1">
+            <button type="submit"  *ngIf="isCreate==true" class="btn btn-primary login-btn"  [disabled]="loading"><i class="fa fa-spinner fa-spin" *ngIf="loading"></i> ADD USER</button>
+            <button type="button"  *ngIf="isEdit==true" class="btn btn-primary login-btn" (click)="edit()" [disabled]="loading"><i class="fa fa-spinner fa-spin" *ngIf="loading"></i> EDIT USER</button>
+        </div>
+
+      </form>
+  
+    </div>
+  </div>
+</div>
+
+
+<div class="user-wrapper custom-card">
+  <!-- <h4 class="no-data" *ngIf="userList.length === 0">NO USER AVAILABLE</h4> -->
+  <div class="table-responsive">
+    <table *ngIf="userList.length > 0" class="table mt-5">
+      <thead>
+        <tr>
+          <!-- <th scope="col">NAME</th> -->
+          <th scope="col">PHONE NUMBER</th>
+          <!-- <th scope="col">ROLE</th> -->
+          <th scope="col">ACTIVE STATUS</th>
+          <th scope="col">ACTION</th>
+          <!-- <th>DELETE</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userList">
+          <!-- <td>
+              <img class="custom-card" [src]="class.endpoint" width="50" height="50">
+          </td> -->
+          <td>
+            {{user?.contactNo}}
+          </td>
+          <!-- <td> {{user?.roleName}}</td> -->
+          <td> {{user.activeStatus == true ? "ACTIVE" : "INACTIVE"}}</td>
+          <td>
+            <!-- <div class="row">
+              <div class="col-md-6 col-lg-6">
+                <div class="edit" (click)="updateUserData(user)"></div>
+              </div>
+              <div class="col-md-6 col-lg-6">
+                <div class="delete" (click)="deleteUser(user)"></div>
+              </div>
+  
+            </div> -->
+            <div class="edit" (click)="updateUserData(user)"></div>
+          </td>
+         
+          <!-- <td>
+            <div class="delete" (click)="deleteUser(user)"></div>
+          </td> -->
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- <form [formGroup]="usersForm">
+  <div class="Table">
+    <div class="Heading">
+      <div class="Row">
+        <div class="Cell">
+            <p>PHONE NUMBER</p>
+        </div>
+        <div class="Cell">
+            <p>ROLE</p>
+        </div>
+        <div class="Cell">
+            <p>UPDATE</p>
+        </div>
+        <div class="Cell">
+          <p>ACTION</p>
+        </div>
+      </div>
+    </div>
+    <div class="Row-out" formArrayName="items" *ngFor="let item of usersForm.get('items')['controls']; let i = index;">
+      <div class="Row" [formGroupName]="i">
+      <div class="Cell">
+          <div class="tuple">
+            <input formControlName="contactNo" placeholder="Phone Number" disabled>
+          </div>
+        </div>
+        <div class="Cell">
+            <div class="tuple">
+              <select formControlName="role" (change)="updateItem(item)">
+                <option *ngFor="let role of roleList" [value]="role">{{role}}</option>
+              </select>
+            </div>
+        </div>
+        <div class="Cell">
+          <div class="tuple">
+          <div *ngIf="updateBtn == item.value.phoneNumber" class="confirm" (click)="updateUser(item)">CONFIRM</div>
+          <div *ngIf="updateBtn != item.value.phoneNumber" class="confirm-dul">CONFIRM</div>
+        </div>
+        </div>
+        <div class="Cell">
+          <div class="tuple">
+          <div *ngIf="userRole!='Contributor'" class="delete" (click)="deleteUser(item.value.phoneNumber)"></div>
+          <div *ngIf="userRole!='Contributor'" class="view" (click)="viewUser(item.value)"></div>
+        
+          <div *ngIf="userRole=='Contributor'" class="delete-disable"></div>
+        </div>
+      </div>
+    </div>  
+    </div>
+</div>
+</form> -->
+      <h4 class="no-user" *ngIf="userList.length == 0">NO USER AVAILABLE</h4>
+      
+</div>
+
+
+<!-- <div class="add-user custom-card" data-bs-toggle="modal" data-bs-target="#addUser">
+
+</div> -->
+
+<div class="add-user custom-card" (click)="openModal()"></div>
